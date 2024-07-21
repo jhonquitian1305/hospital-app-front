@@ -1,0 +1,29 @@
+.form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h1{
+  align-self: flex-start;
+}
+
+mat-form-field {
+  width: 100%;
+  padding-bottom: 1rem;
+}
+
+.save{
+  align-self: flex-end;
+}
+
+.with-account{
+  align-self: flex-start;
+}
+
+#btn-save{
+  background-color: orange;
+}

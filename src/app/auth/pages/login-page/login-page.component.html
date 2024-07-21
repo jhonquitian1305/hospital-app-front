@@ -1,0 +1,51 @@
+<h1>Bienvenido a Hospital-app</h1>
+
+<h2>Si ya tienes cuenta inicia sesión o crea una nueva</h2>
+
+<mat-card class="auth">
+
+  <mat-card-content>
+
+    <h1>Login</h1>
+
+    <form [formGroup]="loginForm" class="login">
+
+      <mat-form-field>
+        <mat-label>Usuario</mat-label>
+        <input
+          type="text"
+          formControlName="email"
+          matInput
+          placeholder="Nombre de usuario"
+        >
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Contraseña</mat-label>
+        <input
+          [type]="hide() ? 'password' : 'text'"
+          formControlName="password"
+          matInput
+          placeholder="Contraseña"
+        >
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="showPassword($event)"
+        >
+          <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <button id="btn-login" mat-flat-button>
+        <mat-icon>login</mat-icon>
+        Ingresar
+      </button>
+
+      <div mat-button class="not-account">
+        <a routerLink="/auth/register" href>¿No tienes cuenta?</a>
+      </div>
+    </form>
+  </mat-card-content>
+
+</mat-card>

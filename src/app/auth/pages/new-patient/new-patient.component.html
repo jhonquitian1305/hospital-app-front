@@ -1,0 +1,79 @@
+<mat-card class="login-form">
+  <mat-card-content>
+    <form [formGroup]="patientForm" class="form" (ngSubmit)="onSubmit()">
+      <h1>Registro de Usuario</h1>
+
+      <mat-form-field>
+        <mat-label>Nombre Completo</mat-label>
+        <input
+          matInput
+          formControlName="fullname"
+          placeholder="Ingrese su nombre completo"
+          required
+        >
+        <mat-error>{{ getFieldError('fullname') }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Cédula</mat-label>
+        <input
+          matInput
+          formControlName="dni"
+          placeholder="Ingrese su cédula"
+          required
+        >
+        <mat-error>{{ getFieldError('dni') }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          formControlName="email"
+          placeholder="example@mail.com"
+          required
+        >
+        <mat-error>{{ getFieldError('email') }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Contraseña</mat-label>
+        <input
+          placeholder="Ingrese la contraseña"
+          formControlName="password"
+          matInput
+          [type]="hide() ? 'password' : 'text'"
+          required
+        >
+        <button type="button" mat-icon-button matSuffix (click)="showPassword($event)">
+          <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error> {{ getFieldError('password')}} </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Confirmar Contraseña</mat-label>
+        <input
+          formControlName="password2"
+          [type]="hide() ? 'password' : 'text'"
+          matInput
+          placeholder="Ingrese de nuevo la contraseña"
+        >
+        <mat-error>{{ getFieldError('password2') }}</mat-error>
+      </mat-form-field>
+
+      <div mat-button class="with-account">
+        <a routerLink="/auth/login" href>¿Ya tienes cuenta?</a>
+      </div>
+
+      <div class="save">
+        <button id="btn-save" mat-flat-button>
+            Guardar
+          <mat-icon>save</mat-icon>
+        </button>
+      </div>
+
+    </form>
+
+  </mat-card-content>
+</mat-card>

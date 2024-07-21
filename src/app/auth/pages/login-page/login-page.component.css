@@ -1,0 +1,29 @@
+.auth{
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.login{
+  display: flex;
+  flex-direction: column;
+}
+
+mat-form-field {
+  width: 100%;
+  padding-bottom: 1rem;
+}
+
+.not-account{
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+#btn-login{
+  background-color: orange;
+}
