@@ -1,0 +1,66 @@
+
+
+<section class="table mat-elevation-z10">
+  <mat-form-field>
+    <mat-label>Cédula</mat-label>
+    <input matInput placeholder="Ex. Mia" #input>
+  </mat-form-field>
+  <table mat-table [dataSource]="dataSource" class="table" matSort>
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+      <td mat-cell *matCellDef="let appointment">{{ appointment.id }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="dni">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Cédula</th>
+      <td mat-cell *matCellDef="let appointment">{{ appointment.patient.dni }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="fullname">
+      <th mat-header-cell *matHeaderCellDef>Nombre</th>
+      <td mat-cell *matCellDef="let appointment">{{ appointment.patient.fullname }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="schedule">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha Cita</th>
+      <td mat-cell *matCellDef="let appointment">{{ appointment.schedule | date: 'dd-MM-YYYY' }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="hour">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Hora Cita</th>
+      <td mat-cell *matCellDef="let appointment">{{ appointment.startHour }}:00</td>
+    </ng-container>
+
+    <ng-container matColumnDef="doctor">
+      <th mat-header-cell *matHeaderCellDef>Doctor</th>
+      <td mat-cell *matCellDef="let appointment">{{ appointment.doctor.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="estado">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Estado</th>
+      <td mat-cell *matCellDef="let appointment">{{ appointment.state.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Acciones</th>
+      <td class="" mat-cell *matCellDef="let appointment">
+        <button color="primary" mat-stroked-button>
+          editar
+          <mat-icon>edit</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+  </table>
+
+  <mat-paginator
+      [length]="length"
+      [pageSize]="size"
+      [pageSizeOptions]="[1, 2, 5, 10]"
+      (page)="changePage($event)"
+  />
+
+</section>

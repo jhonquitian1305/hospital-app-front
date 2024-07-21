@@ -1,0 +1,67 @@
+<h1>Agendar cita</h1>
+
+<form [formGroup]="scheduleForms">
+
+  <mat-form-field>
+    <mat-label>Seleccione el tipo de cita</mat-label>
+    <mat-select formControlName="typeAppointmentId">
+      @for (typeAppointment of typeAppointments; track $index) {
+        <mat-option [value]="typeAppointment.id">{{ typeAppointment.name | titlecase }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+
+  @if (schedules.length > 0) {
+    <mat-form-field >
+      <mat-label>Elige el día</mat-label>
+      <input
+        matInput
+        [min]="minDate"
+        [matDatepicker]="picker"
+        (dateInput)="addEvent($event)"
+        [matDatepickerFilter]="dateFilter"
+        formControlName="date"
+      >
+      <mat-hint>DD/MM/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  }
+
+  @if (hours.length > 0) {
+    <mat-form-field>
+      <mat-label>Seleccione la hora</mat-label>
+      <mat-select formControlName="hour">
+        @for (hour of hours; track $index) {
+          <mat-option [value]="hour">{{ hour }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  }
+
+  @if (doctors.length > 0) {
+    <mat-form-field>
+      <mat-label>Seleccione el doctor</mat-label>
+      <mat-select formControlName="doctor">
+        @for (doctor of doctors; track $index) {
+          <mat-option [value]="doctor.id">{{ doctor.fullname }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  }
+
+  @if(scheduleForms.value.doctor != 0 && doctors.length > 0){
+    <div class="save">
+      <button color="primary" id="btn-save" mat-flat-button>
+          Guardar
+        <mat-icon>save</mat-icon>
+      </button>
+    </div>
+  }
+
+
+</form>
+
+<pre>
+  {{ scheduleForms.value | json}}
+</pre>
