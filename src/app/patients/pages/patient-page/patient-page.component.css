@@ -1,0 +1,29 @@
+.info{
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.action-appointments{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.info button{
+  margin-right: 5rem;
+  min-width: 200px;
+}
+
+#add-appointment{
+  background-color: orange;
+}
+
+#my-appointments{
+  background-color: rgb(59, 148, 189);
+}
+
+#update-info{
+  background-color: rgb(211, 72, 183);
+}

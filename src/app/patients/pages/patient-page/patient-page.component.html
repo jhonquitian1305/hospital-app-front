@@ -1,0 +1,24 @@
+<div class="info">
+
+  <h1>Bienvenido usuario a hospital app</h1>
+
+  <h3>¿Qué desea hacer hoy?</h3>
+
+  <div class="action-appointments">
+    <button routerLink="/appointments/create" id="add-appointment" mat-flat-button>
+      Agendar una cita
+      <mat-icon>medication</mat-icon>
+    </button>
+    <button id="my-appointments" mat-flat-button>
+      Ver mis citas
+      <mat-icon>info</mat-icon>
+    </button>
+
+    <button [routerLink]="['/patients/', 7]" id="update-info" mat-flat-button>
+      Actualizar mis datos
+      <mat-icon>update</mat-icon>
+    </button>
+  </div>
+
+
+</div>

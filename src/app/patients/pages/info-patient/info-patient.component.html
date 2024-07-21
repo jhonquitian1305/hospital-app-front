@@ -1,0 +1,34 @@
+<ul class="my-info">
+
+  <h1>Información personal</h1>
+
+  <div>
+    <li class="item-info">
+    <p class="title">Nombre</p>
+      <p class="content">{{ patient?.fullname }}</p>
+    </li>
+
+    <li class="item-info">
+      <p class="title">Cédula</p>
+      <p class="content">{{ patient?.dni }}</p>
+    </li>
+
+    <li class="item-info">
+      <p class="title">Correo</p>
+      <p class="content">{{ patient?.email }}</p>
+    </li>
+
+    <div class="actions">
+      <button class="edit" mat-button>
+        Editar datos
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button class="change-password" mat-button>
+        Cambiar contraseña
+        <mat-icon>settings</mat-icon>
+      </button>
+    </div>
+
+  </div>
+
+</ul>
