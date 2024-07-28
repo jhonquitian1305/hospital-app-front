@@ -1,8 +1,8 @@
 <h1>Agendar cita</h1>
 
-<form [formGroup]="scheduleForms">
+<form class="form" [formGroup]="scheduleForms" (ngSubmit)="createAppointmentSubmit()">
 
-  <mat-form-field>
+  <mat-form-field class="type-appointment">
     <mat-label>Seleccione el tipo de cita</mat-label>
     <mat-select formControlName="typeAppointmentId">
       @for (typeAppointment of typeAppointments; track $index) {
@@ -61,7 +61,3 @@
 
 
 </form>
-
-<pre>
-  {{ scheduleForms.value | json}}
-</pre>

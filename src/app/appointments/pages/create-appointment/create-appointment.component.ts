@@ -16,6 +16,10 @@ import { DoctorsService } from '../../../doctors/services/doctors.service';
 import { Doctor } from '../../../doctors/interfaces/doctor.interface';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { AppointmentsService } from '../../services/appointments.service';
+import { CreateAppointment } from '../../interfaces/create-appointment.interface';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -44,6 +48,8 @@ export class CreateAppointmentComponent implements OnInit {
   typeAppointmentsService = inject(TypeAppointmentsService);
   schedulesService = inject(SchedulesService);
   doctorsService = inject(DoctorsService);
+  appointmentsService = inject(AppointmentsService);
+  private router = inject(Router);
 
   typeAppointments: TypeAppointment[] = [];
   schedules: Schedule[] = [];
@@ -118,4 +124,39 @@ export class CreateAppointmentComponent implements OnInit {
     const dates = format(d!, "DD-MM-YYYY");
     return datesAllow.includes(dates);
   };
+
+  createAppointmentSubmit(): void {
+    if(this.scheduleForms.invalid) return;
+
+    const { ...appointmentForm } = this.scheduleForms.value;
+
+    const createAppointment: CreateAppointment = {
+      userId: 7,
+      typeId: appointmentForm.typeAppointmentId!,
+      schedule: format(appointmentForm.date!, "YYYY-MM-DD"),
+      startHour: appointmentForm.hour!,
+      doctorId: appointmentForm.doctor!
+    }
+
+    this.appointmentsService.createOne(createAppointment)
+    .subscribe({
+      next: () => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Cita creada',
+          html: 'La cita fue creada con éxito',
+          timer: 2000,
+        });
+        this.router.navigateByUrl('/patients/patient')
+      },
+      error: (messages: string[]) => {
+        console.log(messages);
+        Swal.fire({
+          icon: 'error',
+          title: 'Ocurrió un error',
+          html: `${messages}`,
+        })
+      }
+    });
+  }
 }
