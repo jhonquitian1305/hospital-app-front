@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
+import { AuthService } from './auth/services/auth.service';
+import { AuthStatus } from './auth/interfaces/auth-status.enum';
+import { Role } from './auth/interfaces/role.enum';
 
 @Component({
   selector: 'app-root',
@@ -10,5 +13,25 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'hospital-app-front';
+
+  private authService = inject(AuthService);
+  private router = inject(Router);
+
+  authStatusChangedEffect = effect(() => {
+    if(this.authService.authStatus() === AuthStatus.checking) return;
+
+    if(this.authService.authStatus() === AuthStatus.authenticated){
+      if(this.authService.payload()?.role === Role.PATIENT){
+        this.router.navigateByUrl("/patients/patient");
+        return;
+      }
+      this.router.navigateByUrl("/appointments/");
+      return;
+    }
+
+    if(this.authService.authStatus() === AuthStatus.notAuthenticated){
+      this.router.navigateByUrl("/auth/login");
+      return;
+    }
+  })
 }

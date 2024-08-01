@@ -1,9 +1,12 @@
 import { Routes } from '@angular/router';
+import { privateGuard } from './auth/guards/private.guard';
+import { publicGuard } from './auth/guards/public.guard';
 
 export const routes: Routes = [
   {
     path: 'auth',
     loadComponent: () => import('./auth/auth.component').then(c => c.AuthComponent),
+    canActivate: [publicGuard],
     children: [
       {
         path: 'login',
@@ -22,6 +25,7 @@ export const routes: Routes = [
   {
     path: 'appointments',
     loadComponent: () => import('./appointments/appointments.component').then(c => c.AppointmentsComponent),
+    canActivate: [privateGuard],
     children: [
       {
         path: 'list',
@@ -40,6 +44,7 @@ export const routes: Routes = [
   {
     path: 'patients',
     loadComponent: () => import('./patients/patients.component').then(c => c.PatientsComponent),
+    canActivate: [privateGuard],
     children: [
       {
         path: 'patient',
