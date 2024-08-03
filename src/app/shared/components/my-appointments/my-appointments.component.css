@@ -1,0 +1,12 @@
+.table{
+  width: 90%;
+  margin: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mat-mdc-table .mat-mdc-header-cell {
+  background-color: rgb(59, 148, 189);
+  color: white;
+  border-right: 1px solid white;
+}
