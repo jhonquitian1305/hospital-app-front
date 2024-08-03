@@ -12,7 +12,7 @@ export class AuthService {
   private readonly baseUrl = environment.baseUrl;
 
   private _payload = signal<Payload|null>(null);
-  private _authStatus = signal<AuthStatus|null>(AuthStatus.checking);
+  private _authStatus = signal<AuthStatus>(AuthStatus.checking);
 
   private isLocalStorageAvailable = typeof localStorage !== 'undefined';
 
@@ -22,7 +22,7 @@ export class AuthService {
   private http = inject(HttpClient);
 
   constructor(){
-    if(this.isLocalStorageAvailable && localStorage.getItem('token')){
+    if(this.isLocalStorageAvailable && localStorage.getItem('token') && !this.verifyTokenExpired()){
       const payload = this.decodeToken();
       this._payload.set(payload);
       this._authStatus.set(AuthStatus.authenticated);
@@ -39,7 +39,6 @@ export class AuthService {
           let payload = helper.decodeToken<Payload>(token);
           payload!.isTokenExpired = false;
           this._payload.set(payload);
-          console.log(helper.isTokenExpired())
           this._authStatus.set(AuthStatus.authenticated);
           localStorage.setItem('token', token);
           return true;
@@ -51,7 +50,12 @@ export class AuthService {
   }
 
   verifyTokenExpired(): boolean {
-    if(this.payload()!.isTokenExpired){
+    const helper = new JwtHelperService();
+    if(helper.isTokenExpired(this.getToken) && this.authStatus() === AuthStatus.authenticated){
+      this._authStatus.set(AuthStatus.notAuthenticated);
+      return true;
+    }
+    if(helper.isTokenExpired(this.getToken) && this.authStatus() === AuthStatus.checking){
       this._authStatus.set(AuthStatus.notAuthenticated);
       return true;
     }
