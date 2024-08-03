@@ -77,7 +77,6 @@ export class NewPatientComponent {
         this.router.navigateByUrl('patients/patient');
       },
       error: (messages: string[]) => {
-        console.log(messages);
         Swal.fire({
           icon: 'error',
           title: 'Ocurrió un error',

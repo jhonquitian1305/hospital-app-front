@@ -44,11 +44,11 @@ import { Router } from '@angular/router';
 })
 export class CreateAppointmentComponent implements OnInit {
 
-  fb = inject(FormBuilder);
-  typeAppointmentsService = inject(TypeAppointmentsService);
-  schedulesService = inject(SchedulesService);
-  doctorsService = inject(DoctorsService);
-  appointmentsService = inject(AppointmentsService);
+  private fb = inject(FormBuilder);
+  private typeAppointmentsService = inject(TypeAppointmentsService);
+  private schedulesService = inject(SchedulesService);
+  private doctorsService = inject(DoctorsService);
+  private appointmentsService = inject(AppointmentsService);
   private router = inject(Router);
 
   typeAppointments: TypeAppointment[] = [];

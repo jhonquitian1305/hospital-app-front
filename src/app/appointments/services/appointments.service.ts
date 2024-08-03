@@ -28,4 +28,8 @@ export class AppointmentsService {
   appoinmentsPatient(page: number, size: number): Observable<ResponsePagination<Appointment>> {
     return this.http.get<ResponsePagination<Appointment>>(`${this.baseUrl}/appointments/my-appointments/by-patient?offset=${page}&limit=${size}`);
   }
+
+  appointmentsDoctor(page: number, size: number): Observable<ResponsePagination<Appointment>> {
+    return this.http.get<ResponsePagination<Appointment>>(`${this.baseUrl}/appointments/my-appointments/by-doctor?offset=${page}&limit=${size}`);
+  }
 }

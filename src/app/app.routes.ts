@@ -65,6 +65,17 @@ export const routes: Routes = [
     ]
   },
   {
+    path: 'doctors',
+    loadComponent: () => import('./doctors/doctors.component').then(c => c.DoctorsComponent),
+    canActivate: [privateGuard],
+    children: [
+      {
+        path: 'my-appointments',
+        loadComponent: () => import('./doctors/pages/list-my-appointments/list-my-appointments.component').then(c => c.ListMyAppointmentsComponent),
+      }
+    ]
+  },
+  {
     path: '**',
     redirectTo: 'auth',
   }

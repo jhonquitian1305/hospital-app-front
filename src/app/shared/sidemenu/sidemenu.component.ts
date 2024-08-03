@@ -29,6 +29,7 @@ export class SidemenuComponent {
 
   public sidemenuItems = [
     { label: 'Citas', icon: 'local_hospital', url: '/appointments/list' },
+    { label: 'Mis Citas', icon: 'local_hospital', url: '/doctors/my-appointments' }
   ];
 
   onLogout(){
