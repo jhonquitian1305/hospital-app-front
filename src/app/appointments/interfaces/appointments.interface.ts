@@ -1,3 +1,4 @@
+import { DateInput } from "@formkit/tempo";
 import { Doctor } from "../../doctors/interfaces/doctor.interface";
 import { Patient } from "../../patients/interfaces/patients.interface";
 
@@ -6,11 +7,16 @@ export interface Appointment {
   description:  null;
   schedule:     Date;
   startHour:    number;
-  completed_at: null;
+  completed_at: DateInput;
   patient:      Patient;
   doctor:       Doctor;
-  type:         State;
+  type:         Type;
   state:        State;
+}
+
+interface Type {
+  id: number;
+  name: string;
 }
 
 export interface State {

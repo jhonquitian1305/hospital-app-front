@@ -1,6 +1,6 @@
 <div class="info">
 
-  <h1>Bienvenido usuario a hospital app</h1>
+  <h1>Hola, {{ user.fullname }}, Bienvenido a hospital app</h1>
 
   <h3>¿Qué desea hacer hoy?</h3>
 
@@ -9,7 +9,7 @@
       Agendar una cita
       <mat-icon>medication</mat-icon>
     </button>
-    <button id="my-appointments" mat-flat-button>
+    <button routerLink="/patients/my-appointments" id="my-appointments" mat-flat-button>
       Ver mis citas
       <mat-icon>info</mat-icon>
     </button>
