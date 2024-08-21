@@ -76,6 +76,21 @@ export const routes: Routes = [
     ]
   },
   {
+    path: 'schedules',
+    loadComponent: () => import('./schedules/schedules.component').then(c => c.SchedulesComponent),
+    canActivate: [privateGuard],
+    children: [
+      {
+        path: 'list',
+        loadComponent: () => import('./schedules/pages/my-schedules/my-schedules.component').then(c => c.MySchedulesComponent),
+      },
+      {
+        path: '**',
+        redirectTo: 'list'
+      }
+    ]
+  },
+  {
     path: '**',
     redirectTo: 'auth',
   }

@@ -1,0 +1,50 @@
+<button class="create-schedule" (click)="createSchedule()" mat-raised-button>Agregar horario</button>
+
+<div class="main">
+
+  <mat-card class="calendar">
+    <mat-calendar [selected]="selectedDate" (selectedChange)="onDateSelected($event)"></mat-calendar>
+  </mat-card>
+
+  <div class="schedules">
+    <section class="header">
+      <p></p>
+      @for (day of week; track $index) {
+        <p>{{ day.day }} <br> {{ day.date }} </p>
+      }
+    </section>
+
+    <section class="hour">
+      <p>1:00</p>
+      <p>2:00</p>
+      <p>3:00</p>
+      <p>4:00</p>
+      <p>5:00</p>
+      <p>6:00</p>
+      <p>7:00</p>
+      <p>8:00</p>
+      <p>9:00</p>
+      <p>10:00</p>
+      <p>11:00</p>
+      <p>12:00</p>
+      <p>13:00</p>
+      <p>14:00</p>
+      <p>15:00</p>
+      <p>16:00</p>
+      <p>17:00</p>
+      <p>18:00</p>
+      <p>19:00</p>
+      <p>20:00</p>
+      <p>21:00</p>
+      <p>22:00</p>
+      <p>23:00</p>
+      <p>24:00</p>
+    </section>
+
+    <section class="content">
+      @for (item of counter; track $index) {
+        <p (click)="getDate($index)" [ngStyle]="applyStyle($index)"></p>
+      }
+    </section>
+  </div>
+</div>
