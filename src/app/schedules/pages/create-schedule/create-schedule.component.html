@@ -1,0 +1,43 @@
+<form class="add-appointment" [formGroup]="scheduleForm" (ngSubmit)="saveSchedule()">
+
+  <h1>Seleccione los horarios que desea crear</h1>
+
+  <mat-form-field class="range">
+    <label>Ingrese el horario</label>
+    <mat-date-range-input [min]="minDate" [rangePicker]="picker">
+      <input matStartDate formControlName="start" placeholder="Fecha inicial">
+      <input matEndDate formControlName="end" placeholder="Fecha final">
+    </mat-date-range-input>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-date-range-picker #picker></mat-date-range-picker>
+    <mat-error>{{ getFieldError('end') }}</mat-error>
+  </mat-form-field>
+
+  <span class="spacer"></span>
+
+  <mat-form-field class="">
+    <label>Hora de inicio</label>
+    <input formControlName="hourStart" type="time" matInput>
+    <mat-icon matIconSuffix>schedule</mat-icon>
+    <mat-error>{{ getFieldError('hourStart') }}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="">
+    <label>Hora Final</label>
+    <input formControlName="hourEnd" type="time" matInput>
+    <mat-icon matIconSuffix>schedule</mat-icon>
+    <mat-error>{{ getFieldError('hourEnd') }}</mat-error>
+  </mat-form-field>
+
+  <div class="actions-schedule">
+    <button (click)="closeDialog()" color="warn" mat-raised-button>
+      Cerrar
+      <mat-icon>close</mat-icon>
+    </button>
+    <button color="primary" mat-raised-button>
+      Guardar horario
+      <mat-icon>save</mat-icon>
+    </button>
+  </div>
+
+</form>

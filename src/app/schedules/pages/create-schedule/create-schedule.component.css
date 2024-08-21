@@ -1,0 +1,9 @@
+.add-appointment{
+  display: flex;
+  flex-direction: column;
+}
+
+.actions-schedule{
+  display: flex;
+  justify-content: space-between;
+}
